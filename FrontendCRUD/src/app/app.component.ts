@@ -15,7 +15,7 @@ import {Parser} from "@angular/compiler";
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  sanitizedPhotoSVGs: SafeHtml[] = []
+  sanitizedPhotoSVGs: { [id: string]: any } = {};
   displayedColumns: string[] = [
     'id',
     'firstName',
@@ -46,10 +46,11 @@ export class AppComponent implements OnInit {
   }
 
   sanitizePhotoSVGs(): void {
-    this.sanitizedPhotoSVGs = this.dataSource.data.map(row => {
-      return this._sanitizer.bypassSecurityTrustHtml(row.photoSVG);
+    this.dataSource.data.forEach(row => {
+      this.sanitizedPhotoSVGs[row.id] = this._sanitizer.bypassSecurityTrustHtml(row.photoSVG);
     });
   }
+
 
 
 
