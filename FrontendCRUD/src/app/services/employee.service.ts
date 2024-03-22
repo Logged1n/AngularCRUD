@@ -14,11 +14,11 @@ export class EmployeeService {
   constructor(private _http: HttpClient) { }
 
   addEmployee(data: any): Observable<any> {
+    //getting of avatar from multiavatarApi
     return this._http.get(this.photoUrl + data.firstName + data.lastName + "/?apikey=" + this.photoApiKey, { responseType: 'text' }).pipe(
       switchMap(svgResponse => {
-        // Przypisz string SVG do data.photoSVG
         data.photoSVG = svgResponse;
-        // Wyślij dane do serwera
+        // Send data to server
         return this._http.post(this.apiUrl + 'Employee/AddEmployee', data, {
           headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export class EmployeeService {
       }),
       catchError(error => {
         console.error('Wystąpił błąd: ', error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }

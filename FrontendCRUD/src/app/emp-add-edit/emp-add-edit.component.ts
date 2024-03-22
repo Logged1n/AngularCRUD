@@ -46,7 +46,7 @@ export class EmpAddEditComponent implements OnInit {
     if (this.empForm.valid) {
       const formData = this.empForm.value;
       if (this.data) {
-        formData.id = this.data.id; // Przypisz identyfikator pracownika do danych formularza
+        formData.id = this.data.id; // id assign on sending form
         this._empService
           .updateEmployee(formData)
           .subscribe({

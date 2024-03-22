@@ -7,7 +7,6 @@ import {MatSort} from "@angular/material/sort";
 import {EmployeeService} from "./services/employee.service";
 import {CoreService} from "./core/core.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
-import {Parser} from "@angular/compiler";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,7 @@ import {Parser} from "@angular/compiler";
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  sanitizedPhotoSVGs: { [id: string]: any } = {};
+  sanitizedPhotoSVGs: { [id: string]: SafeHtml } = {};
   displayedColumns: string[] = [
     'id',
     'firstName',
@@ -50,8 +49,6 @@ export class AppComponent implements OnInit {
       this.sanitizedPhotoSVGs[row.id] = this._sanitizer.bypassSecurityTrustHtml(row.photoSVG);
     });
   }
-
-
 
 
   openAddEditEmpForm() {
@@ -109,6 +106,4 @@ export class AppComponent implements OnInit {
       },
     });
   }
-
-  protected readonly parseInt = parseInt;
 }
