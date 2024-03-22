@@ -17,11 +17,10 @@
 }
 
 .photo {
-  width: 96px;
-  height: 96px;
-}
-
-.photo svg {
-  width: 100%;
-  height: auto;
+  padding: 0;
+  margin: 0 50px 0 0;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: 100%;
 }

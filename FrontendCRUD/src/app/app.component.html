@@ -69,8 +69,8 @@
       <!-- TODO: fix showing of SVG strings -->
       <ng-container matColumnDef="photoSVG">
         <th mat-header-cell *matHeaderCellDef> Photo </th>
-        <td mat-cell *matCellDef="let index">
-          <div [innerHTML]="sanitizedPhotoSVGs[index]" class="photo"></div>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon [innerHTML]="sanitizedPhotoSVGs[parseInt(row.id)-1]" class="photo"></mat-icon>
         </td>
       </ng-container>
 
